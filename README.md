@@ -11,5 +11,6 @@ The aim of this project is to propose open code in C for the [Raspberry Pi Pico]
 | [MAX30105](https://shop.pimoroni.com/products/max30101-breakout-heart-rate-oximeter-smoke-sensor?variant=21482065985619) | Heart Rate, Oximeter, Smoke Sensor | IN PROGRESS | ToDo |
 
 The rig used for testing is the [Pico Explorer Base](https://shop.pimoroni.com/products/pico-explorer-base?variant=32369514315859) from Pimoroni. The ST7789 display will be used to check values of sensors.
+A 'Debug' compilation can be used to read sensors values from serial port (USB) on Pico.
 
 The code include a bash script (pico_tool.sh) to build the exe file and load it to the Pico using OpenOCD and SWD port (using a Raspberry Pi for example).
