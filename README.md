@@ -1,7 +1,19 @@
-# pico-station
+# Pico-Station
 
-The aim of this project is to propose open code in C for the [Raspberry Pi Pico](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html), to integrate several environnemental sensors (Pimoroni breakouts) :
+The aim of this project is to propose open code in C for the [Raspberry Pi Pico](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html), to integrate several environnemental sensors into your embedded systems ([Pimoroni breakouts](https://shop.pimoroni.com/)).
 
+## Purpose of this open source code sensors
+As world climate is changing fastly, environnement is becoming more and more un-predictable. Integrating these sensors into a low consumption embedded systems is an opportunity to measure and evaluate what's happen in your environnement, for better decision taking.
+
+**Therefore, don't hesitate to bring your contribution to these project and broadcast widely this open-source code.**
+
+## Why using the Raspberry Pico ?
+The micro-controller is cheap, widely available, energy low comsumption and powerful (100MHz and dual core). It integrates several interfaces (UART, I2C, SPI) to match all needs for for I/O and sensors.
+
+## Why developping in C/C++ ?
+C progamming is a very well optimized langage for embedded systems : low consumption, robust, compiled, widely used...
+
+### List of developped sensors for the station
 | Sensor Name | Description | Dev Progress | Calibration |
 | :---:   | :-: | :-: | :-: |
 | [ST7789](https://shop.pimoroni.com/products/bme680-breakout?variant=12491552129107) | Pico Explorer Base Display | OK | OK |
@@ -10,7 +22,19 @@ The aim of this project is to propose open code in C for the [Raspberry Pi Pico]
 | [SGP30](https://shop.pimoroni.com/products/sgp30-air-quality-sensor-breakout?variant=30924091719763) | Air Quality Sensor Breakout | OK | ToDo |
 | [MAX30105](https://shop.pimoroni.com/products/max30101-breakout-heart-rate-oximeter-smoke-sensor?variant=21482065985619) | Heart Rate, Oximeter, Smoke Sensor | IN PROGRESS | ToDo |
 
-The rig used for testing is the [Pico Explorer Base](https://shop.pimoroni.com/products/pico-explorer-base?variant=32369514315859) from Pimoroni. The ST7789 display will be used to check values of sensors.
+The rig used for testing is the [Pico Explorer Base](https://shop.pimoroni.com/products/pico-explorer-base?variant=32369514315859) from Pimoroni. The ST7789 display will be used to check values of sensors and buttons to select configurations of the project.
+
 A 'Debug' compilation can be used to read sensors values from serial port (USB) on Pico.
 
-The code include a bash script (pico_tool.sh) to build the exe file and load it to the Pico using OpenOCD and SWD port (using a Raspberry Pi for example).
+## Compilation of the project
+The code include a bash script (pico_tool.sh) to build the exe file (ELF) and load it to the Pico using OpenOCD and SWD port (using a Raspberry Pi for example). How to use the bash tool :
+
+`./pico_tool.sh -h` : display the help on the tool
+`./pico_tool.sh -a clean` : clean-up the compilation folder (build)
+`./pico_tool.sh -a cmake` : generate the **makefile** using CMake. You need to deploy and set your [Raspberry Pico SDK](https://github.com/raspberrypi/pico-sdk).
+`./pico_tool.sh -a (re)build` : build or rebuild the binary ELF executable (pico-station.elf)
+`./pico_tool.sh -a build_load` : build the project then load the binary on RP2040 chip. See next topic for explanations.
+
+## Deployment afer compilation
+Once the binary exe file is compiled, you can upload it using the SWD port available on the Raspberry Pico, from a GPIO module (Raspberry Pi Zero for example). From a Linux environnement including GPIO interface, you need to install OpenOCD following this [tutorial](https://www.electronicshub.org/programming-raspberry-pi-pico-with-swd). You have to link SWCLK/GND/SWDIO interface from Pico to a Raspberry Pi.
+
