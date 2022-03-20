@@ -3,7 +3,6 @@
  *
  *    A. Surzur - 2022
  *    main.c file
- *
  */
 
 #include "common.h"
