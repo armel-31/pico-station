@@ -12,10 +12,10 @@ set(CMAKE_CXX_STANDARD 17)
 pico_sdk_init()
 
 # Add sensors and devices directory
-add_subdirectory(st7789)
-add_subdirectory(sgp30)
-add_subdirectory(bme680)
-add_subdirectory(vl53l1x)
+add_subdirectory(hmi/st7789)
+add_subdirectory(sensors/sgp30)
+add_subdirectory(sensors/bme680)
+add_subdirectory(sensors/vl53l1x)
 
 # Create pico-station executable
 add_executable(pico-station main.c)

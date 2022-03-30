@@ -5,7 +5,7 @@
  *    main.c file
  */
 
-#include "common.h"
+#include "pico_common.h"
 
 #include <sgp30.h>
 #include <vl53l1x.h>
@@ -13,11 +13,18 @@
 #include <bme680.h>
 
 /*
+ * Init BME680
+ */
+
+
+
+/*
  * Runtime main loop
  */
 
 int main() {
 
+    uint8_t ui8_run_loop = 1;
     // ST7789 display values
     uint8_t disp_y;
     char disp_data[DISP_LEN];
@@ -132,7 +139,7 @@ int main() {
     bme680_get_profile_dur(&meas_period, &t_dev);
 
     // Loop
-    while (1) {
+    while (ui8_run_loop) {
         gpio_put(LED_PIN, 1);
         user_delay_ms(meas_period); /* Delay till the measurement is ready */
         
