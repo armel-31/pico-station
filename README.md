@@ -15,7 +15,7 @@ C progamming is a very well optimized langage for embedded systems : low consump
 
 ## List of developped devices for the station
 
-### Sensors Devices
+### Sensors Devices
 | Sensor Name | Description | Dev Progress | Calibration |
 | :---:   | :-: | :-: | :-: |
 | [BME680](https://shop.pimoroni.com/products/bme680-breakout?variant=12491552129107) | Air Quality, Temperature, Pressure, Humidity Sensor | OK | ToDo |
@@ -24,12 +24,12 @@ C progamming is a very well optimized langage for embedded systems : low consump
 | [MAX30105](https://shop.pimoroni.com/products/max30101-breakout-heart-rate-oximeter-smoke-sensor?variant=21482065985619) | Heart Rate, Oximeter, Smoke Sensor | IN PROGRESS | ToDo |
 | [PMW3901](https://shop.pimoroni.com/products/max30101-breakout-heart-rate-oximeter-smoke-sensor?variant=21482065985619) | Heart Rate, Oximeter, Smoke Sensor | ToDo | ToDo |
 
-### IoT Devices
+### IoT Devices
 | Device Name | Description | Dev Progress |
 | :---:   | :-: | :-: |
 | [Pico Wireless](https://shop.pimoroni.com/products/bme680-breakout?variant=12491552129107) | Pico Wireless module based on ESP32 and SD Card | ToDo |
 
-### HMI Devices
+### HMI Devices
 | Device Name | Description | Dev Progress | Calibration |
 | :---:   | :-: | :-: | :-: |
 | [ST7789](https://shop.pimoroni.com/products/bme680-breakout?variant=12491552129107) | Pico Explorer Base Display | OK | OK |
