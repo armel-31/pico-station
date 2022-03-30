@@ -13,15 +13,31 @@ The micro-controller is cheap, widely available, energy low comsumption and powe
 ## Why developping in C/C++ ?
 C progamming is a very well optimized langage for embedded systems : low consumption, robust, compiled, widely used...
 
-### List of developped sensors for the station
+## List of developped devices for the station
+
+### Sensors Devices
+
 | Sensor Name | Description | Dev Progress | Calibration |
 | :---:   | :-: | :-: | :-: |
-| [ST7789](https://shop.pimoroni.com/products/bme680-breakout?variant=12491552129107) | Pico Explorer Base Display | OK | OK |
 | [BME680](https://shop.pimoroni.com/products/bme680-breakout?variant=12491552129107) | Air Quality, Temperature, Pressure, Humidity Sensor | OK | ToDo |
 | [VL53L1X](https://shop.pimoroni.com/products/vl53l1x-breakout?variant=12628497236051) | Time of Flight (ToF) Sensor Breakout | OK | ToDo |
 | [SGP30](https://shop.pimoroni.com/products/sgp30-air-quality-sensor-breakout?variant=30924091719763) | Air Quality Sensor Breakout | OK | ToDo |
 | [MAX30105](https://shop.pimoroni.com/products/max30101-breakout-heart-rate-oximeter-smoke-sensor?variant=21482065985619) | Heart Rate, Oximeter, Smoke Sensor | IN PROGRESS | ToDo |
+| [PMW3901](https://shop.pimoroni.com/products/max30101-breakout-heart-rate-oximeter-smoke-sensor?variant=21482065985619) | Heart Rate, Oximeter, Smoke Sensor | ToDo | ToDo |
 
+### IoT Devices
+
+| Device Name | Description | Dev Progress |
+| :---:   | :-: | :-: |
+| [Pico Wireless](https://shop.pimoroni.com/products/bme680-breakout?variant=12491552129107) | Pico Wireless module based on ESP32 and SD Card | ToDo |
+
+### HMI Devices
+
+| Device Name | Description | Dev Progress | Calibration |
+| :---:   | :-: | :-: | :-: |
+| [ST7789](https://shop.pimoroni.com/products/bme680-breakout?variant=12491552129107) | Pico Explorer Base Display | OK | OK |
+
+## Project Architecture
 The rig used for testing is the [Pico Explorer Base](https://shop.pimoroni.com/products/pico-explorer-base?variant=32369514315859) from Pimoroni. The ST7789 display will be used to check values of sensors and buttons to select configurations of the project.
 
 A 'Debug' compilation can be used to read sensors values from serial port (USB) on Pico.
@@ -29,12 +45,29 @@ A 'Debug' compilation can be used to read sensors values from serial port (USB) 
 ## Compilation of the project
 The code include a bash script (pico_tool.sh) to build the exe file (ELF) and load it to the Pico using OpenOCD and SWD port (using a Raspberry Pi for example). How to use the bash tool :
 
-`./pico_tool.sh -h` : display the help on the tool
-`./pico_tool.sh -a clean` : clean-up the compilation folder (build)
-`./pico_tool.sh -a cmake` : generate the **makefile** using CMake. You need to deploy and set your [Raspberry Pico SDK](https://github.com/raspberrypi/pico-sdk).
-`./pico_tool.sh -a (re)build` : build or rebuild the binary ELF executable (pico-station.elf)
-`./pico_tool.sh -a build_load` : build the project then load the binary on RP2040 chip. See next topic for explanations.
+Display the help on the tool :
+````
+./pico_tool.sh -h
+````
+Clean-up the compilation folder (build) :
+````
+./pico_tool.sh -a clean
+````
+Generate the **makefile** using CMake. You need to deploy and set your [Raspberry Pico SDK](https://github.com/raspberrypi/pico-sdk) :
+````
+./pico_tool.sh -a cmake
+````
+build or rebuild the binary ELF executable (pico-station.elf)
+````
+./pico_tool.sh -a (re)build
+```` 
+Build the project then load the binary on RP2040 chip (see next topic for explanations) :
+````
+./pico_tool.sh -a build_load
+```` 
 
-## Deployment afer compilation
-Once the binary exe file is compiled, you can upload it using the SWD port available on the Raspberry Pico, from a GPIO module (Raspberry Pi Zero for example). From a Linux environnement including GPIO interface, you need to install OpenOCD following this [tutorial](https://www.electronicshub.org/programming-raspberry-pi-pico-with-swd). You have to link SWCLK/GND/SWDIO interface from Pico to a Raspberry Pi.
+## Deployment after compilation
+Once the binary exe file is compiled, you can upload it using the SWD port available on the Raspberry Pico, from a GPIO module (Raspberry Pi Zero for example). 
+
+From a Linux environnement including GPIO interface, you need to install OpenOCD following this [tutorial](https://www.electronicshub.org/programming-raspberry-pi-pico-with-swd). You have to link SWCLK/GND/SWDIO interface from Pico to a Raspberry Pi.
 
