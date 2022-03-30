@@ -3,15 +3,17 @@
 The aim of this project is to propose open code in C for the [Raspberry Pi Pico](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html), to integrate several environnemental sensors into your embedded systems ([Pimoroni breakouts](https://shop.pimoroni.com/)).
 
 ## Purpose of this open source code sensors
-As world climate is changing fastly, environnement is becoming more and more un-predictable. Integrating these sensors into a low consumption embedded systems is an opportunity to measure and evaluate what's happen in your environnement, for better decision taking.
+As world climate is changing fastly, environnement is becoming more and more un-predictable. Integrating these sensors into low consumption and connected embedded systems is an opportunity to measure and evaluate what's happening in real time in your environnement, for better decision taking.
 
 **Therefore, don't hesitate to bring your contribution to these project and broadcast widely this open-source code.**
 
 ## Why using the Raspberry Pico ?
-The micro-controller is cheap, widely available, energy low comsumption and powerful (100MHz and dual core). It integrates several interfaces (UART, I2C, SPI) to match all needs for for I/O and sensors.
+The Raspberry Pico micro-controller is cheap, widely available, energy low comsumption and powerful (Dual Core ARM0+ clock at 133MHz - 2MB Flash Memory). It integrates several interfaces (UART, I2C, SPI) to match all needs for for I/O and sensors.
+
+Moreover, a wide community is behind this MCU as you can find [API documentation](https://raspberrypi.github.io/pico-sdk-doxygen/modules.html) and [examples](https://github.com/raspberrypi/pico-examples).
 
 ## Why developping in C/C++ ?
-C progamming is a very well optimized langage for embedded systems : low consumption, robust, compiled, widely used...
+C progamming is a very well optimized and robust langage for embedded systems : low consumption, compiled, many low level libraries, widely used...
 
 ## List of developped devices for the station
 
@@ -34,7 +36,7 @@ C progamming is a very well optimized langage for embedded systems : low consump
 | :---:   | :-: | :-: | :-: |
 | [ST7789](https://shop.pimoroni.com/products/bme680-breakout?variant=12491552129107) | Pico Explorer Base Display | OK | OK |
 
-## Project Architecture
+## Project Architecture
 The rig used for testing is the [Pico Explorer Base](https://shop.pimoroni.com/products/pico-explorer-base?variant=32369514315859) from Pimoroni. The ST7789 display will be used to check values of sensors and buttons to select configurations of the project.
 
 A 'Debug' compilation can be used to read sensors values from serial port (USB) on Pico.
