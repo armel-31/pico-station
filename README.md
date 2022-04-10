@@ -24,17 +24,18 @@ C progamming is a very well optimized and robust langage for embedded systems : 
 | [VL53L1X](https://shop.pimoroni.com/products/vl53l1x-breakout?variant=12628497236051) | Time of Flight (ToF) Sensor Breakout | OK | ToDo |
 | [SGP30](https://shop.pimoroni.com/products/sgp30-air-quality-sensor-breakout?variant=30924091719763) | Air Quality Sensor Breakout | OK | ToDo |
 | [MAX30105](https://shop.pimoroni.com/products/max30101-breakout-heart-rate-oximeter-smoke-sensor?variant=21482065985619) | Heart Rate, Oximeter, Smoke Sensor | IN PROGRESS | ToDo |
-| [PMW3901](https://shop.pimoroni.com/products/max30101-breakout-heart-rate-oximeter-smoke-sensor?variant=21482065985619) | Heart Rate, Oximeter, Smoke Sensor | ToDo | ToDo |
+| [PMW3901](https://shop.pimoroni.com/products/pmw3901-optical-flow-sensor-breakout?variant=27869870358611) | Optical Flow Sensor | ToDo | ToDo |
 
 ### IoT Devices
 | Device Name | Description | Dev Progress |
 | :---:   | :-: | :-: |
-| [Pico Wireless](https://shop.pimoroni.com/products/bme680-breakout?variant=12491552129107) | Pico Wireless module based on ESP32 and SD Card | ToDo |
+| [Pico Wireless](https://shop.pimoroni.com/products/pico-wireless-pack?variant=32369508581459) | Pico Wireless module based on ESP32 and SD Card | ToDo |
+| [SIM7020E NB-IoT](https://www.waveshare.com/pico-sim7020e-nb-iot.htm) | SIM7020E NB-IoT Module | In Progress |
 
 ### HMI Devices
 | Device Name | Description | Dev Progress | Calibration |
 | :---:   | :-: | :-: | :-: |
-| [ST7789](https://shop.pimoroni.com/products/bme680-breakout?variant=12491552129107) | Pico Explorer Base Display | OK | OK |
+| [ST7789](https://shop.pimoroni.com/products/pico-explorer-base?variant=32369514315859) | Pico Explorer Base Display (ST7789) | OK | OK |
 
 ## Project Architecture
 The rig used for testing is the [Pico Explorer Base](https://shop.pimoroni.com/products/pico-explorer-base?variant=32369514315859) from Pimoroni. The ST7789 display will be used to check values of sensors and buttons to select configurations of the project.

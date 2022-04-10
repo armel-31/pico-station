@@ -5,7 +5,7 @@
  *    main.c file
  */
 
-#include "pico_common.h"
+#include "pico-station.h"
 
 #include <sgp30.h>
 #include <vl53l1x.h>

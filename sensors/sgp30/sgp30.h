@@ -18,7 +18,7 @@
 #include "hardware/i2c.h"
 #include "pico/binary_info.h"
 
-#include "pico_common.h"
+#include "pico-station.h"
 
 /*
  *  Prototypes

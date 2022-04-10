@@ -65,7 +65,7 @@
 #include "pico/binary_info.h"
 #endif
 
-#include "pico_common.h"
+#include "pico-station.h"
 
 /******************************************************************************/
 /*! @name		Common macros					      */
