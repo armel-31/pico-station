@@ -18,6 +18,23 @@
 
 
 /*
+ *  Structures definition
+ */
+
+typedef struct {
+    uint8_t sd_card_mount;
+
+} SdCardDef;
+
+
+
+
+/*
+ *  Constants
+ */
+
+
+/*
  *  Prototypes
  */
 

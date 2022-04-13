@@ -2,7 +2,7 @@
  * Cellular SIM7020E functions
  */
 
-#include "sim7020E.h"
+#include "sim7020e.h"
 
 
 

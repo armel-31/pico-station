@@ -38,13 +38,13 @@ build_func() {
 load_func() {
     cd $current_dir
     # Run OpenOCD to load compiled ELF program on Pico target (SWD link)
-    sudo openocd -f interface/raspberrypi-swd.cfg -f target/rp2040.cfg -c "program ./build/pico-station.elf verify reset exit"
+    sudo openocd -f interface/raspberrypi-swd.cfg -f target/rp2040.cfg -c "program ./build/pico-wireless.elf verify reset exit"
 }
 
 reset_func() {
     cd $current_dir
     # Run OpenOCD to load compiled ELF program on Pico target (SWD link)
-    sudo openocd -f interface/raspberrypi-swd.cfg -f target/rp2040.cfg -c "program ./build/pico-station.elf verify reset exit"
+    sudo openocd -f interface/raspberrypi-swd.cfg -f target/rp2040.cfg -c "program ./build/pico-wireless.elf verify reset exit"
 }
 
 

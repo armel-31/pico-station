@@ -13,46 +13,12 @@
 #include <bme680.h>
 
 /*
- * Init BME680
+ * Init GPIO
  */
-
-
-
-/*
- * Runtime main loop
- */
-
-int main() {
-
-    uint8_t ui8_run_loop = 1;
-    // ST7789 display values
-    uint8_t disp_y;
-    char disp_data[DISP_LEN];
-
-    // SGP30 reading values
-    uint32_t sgp30_dev_init = 0;
-    uint8_t reading_buffer[4];
-    unsigned char decimal_reading[5];
-    uint16_t co2_reading = 0;
-    uint16_t tvoc_reading = 0;
-
-
-    // BME680 reading values
-    uint8_t bme680_dev_init = BME680_OK;
-    struct bme680_dev t_dev;
-    uint8_t set_required_settings;
-    struct bme680_field_data data;
-    uint16_t meas_period;
-
-    // VL53L1X reading values
-    uint8_t vl53l1x_dev_init = 0;
-    ResultBuffer t_results;
-    uint16_t tof_value = 0;
-
-    // Pico SDK initialization
-    stdio_init_all();
+void init_gpio() {
 
     gpio_init(LED_PIN);
+    gpio_set_dir(LED_PIN, GPIO_OUT);
 
     // SPI Initialization
     spi_init(SPI_PORT, 16000000);
@@ -63,7 +29,6 @@ int main() {
     gpio_set_dir(DC_PIN, GPIO_OUT);
     gpio_set_dir(CS_PIN, GPIO_OUT);
     gpio_set_dir(BK_PIN, GPIO_OUT);
-    gpio_set_dir(LED_PIN, GPIO_OUT);
 
     // Set SPI format spi, bits, polarity (CPOL), phase (CPHA)
     spi_set_format(SPI_PORT, 8, 1, 0, 1);
@@ -91,10 +56,48 @@ int main() {
     gpio_set_dir(SWITCH_X, GPIO_IN);
     gpio_set_dir(SWITCH_Y, GPIO_IN);
     gpio_pull_down(SWITCH_A);
+}
+
+/*
+ * Init BME680
+ */
+
+
+/*
+ * Runtime main loop
+ */
+int main() {
+
+    uint8_t ui8_run_loop = 1;
+    // ST7789 display values
+    uint8_t disp_y;
+    char disp_data[DISP_LEN];
+
+    // SGP30 reading values
+    uint32_t sgp30_dev_init = 0;
+    uint8_t reading_buffer[4];
+    unsigned char decimal_reading[5];
+    uint16_t co2_reading = 0;
+    uint16_t tvoc_reading = 0;
+
+    // BME680 reading values
+    uint8_t bme680_dev_init = BME680_OK;
+    struct bme680_dev t_dev;
+    uint8_t set_required_settings;
+    struct bme680_field_data data;
+    uint16_t meas_period;
+
+    // VL53L1X reading values
+    uint8_t vl53l1x_dev_init = 0;
+    ResultBuffer t_results;
+    uint16_t tof_value = 0;
+
+    // Pico SDK initialization
+    stdio_init_all();
+    init_gpio();
 
     ///// ST7789 Initialization
     display_init();
-    sleep_ms(100);
 
     ///// SGP30 Initialization
     sgp30_dev_init = sgp30_init();
@@ -125,7 +128,6 @@ int main() {
     t_dev.gas_sett.heatr_dur = 100; /* milliseconds */
 
     /* Select the power mode */
-    /* Must be set before writing the sensor configuration */
     t_dev.power_mode = BME680_FORCED_MODE;
 
     /* Set the required sensor settings needed */
@@ -140,6 +142,7 @@ int main() {
 
     // Loop
     while (ui8_run_loop) {
+        // Set LED to 1
         gpio_put(LED_PIN, 1);
         user_delay_ms(meas_period); /* Delay till the measurement is ready */
         
@@ -164,7 +167,7 @@ int main() {
 #endif
         }
 
-        if (bme680_get_sensor_data(&data, &t_dev) == BME680_OK) {
+        if (bme680_get_sensor_data(&data, &t_dev) == BME680_OK && bme680_dev_init == BME680_OK) {
             // BME680 displayed data
             if (disp_y != 0) {
                 disp_y = disp_y + 20;
@@ -180,9 +183,13 @@ int main() {
             disp_y = disp_y + 20;
             sprintf(disp_data, "GasR : %.2f KOhms", data.gas_resistance);
             writeString(0, disp_y, disp_data, Font_11x18, GREEN, BLACK);
-#ifdef DEBUG
+//#ifdef DEBUG
             printf("T: %.2f degC, P: %.2f hPa, H %.2f H\n", data.temperature, data.pressure / 100.0f, data.humidity);
-#endif
+//#endif
+            /* Trigger the next measurement if you would like to read data out continuously */
+            if (t_dev.power_mode == BME680_FORCED_MODE) {
+                bme680_set_sensor_mode(&t_dev);
+            }
         }
 
         if (vl53l1x_dev_init != 254 && vl53l1x_read_results(&t_results) == 0) {
@@ -197,10 +204,6 @@ int main() {
 #ifdef DEBUG
             printf("TOF: %d mm\n", tof_value);
 #endif
-            /* Trigger the next measurement if you would like to read data out continuously */
-            if (t_dev.power_mode == BME680_FORCED_MODE) {
-                bme680_set_sensor_mode(&t_dev);
-            }
         }
 
         if(gpio_get(SWITCH_A)) {
@@ -208,7 +211,7 @@ int main() {
             writeString(0, disp_y + 20, disp_data, Font_11x18, BLUE,BLACK);
         }
 
-        // Display read data
+        // Reset LED value
         gpio_put(LED_PIN, 0);
         
         // Timer between 2 readings
